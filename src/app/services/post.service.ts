@@ -11,7 +11,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getPostsData(): Observable<any> {
-    return this.http.get("http://127.0.0.1:8081/api/posts/");
+    return this.http.get("http://127.0.0.1:8081/api/posts");
   }
 
   private posts: Post[] = [];

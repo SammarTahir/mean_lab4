@@ -48,6 +48,7 @@ app.get('/api/posts', function (req, res) {
     res.status(200).json({ post: posts }); //Name + Type
 })
 
+// This repsonds with Json information
 app.post('/api/posts', function (req, res) {
     console.log("Title is " + req.body.title);
     console.log("Content is " + req.body.content);
