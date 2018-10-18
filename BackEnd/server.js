@@ -10,6 +10,12 @@ var bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
     res.send('Hello World');
@@ -42,6 +48,11 @@ app.get('/api/posts', function (req, res) {
     res.status(200).json({ post: posts }); //Name + Type
 })
 
+app.post('/api/posts', function (req, res) {
+    console.log("Title is " + req.body.title);
+    console.log("Content is " + req.body.content);
+})
+
 // This responds with a html-> "/index.html" file on the test page
 app.get('/test', function (req, res) {
     res.sendFile(path.join(__dirname + "/index.html"));
@@ -60,15 +71,6 @@ app.post('/name', function (req, res) {
     console.log(req.body.firstname);
     res.send('Hello ' + req.body.firstname + " " + req.body.lastname);
 })
-
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
-
 
 var server = app.listen(8081, function () {
     var host = server.address().address

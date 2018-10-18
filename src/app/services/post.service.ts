@@ -28,7 +28,6 @@ export class PostService {
   addPost(title: string, content: string): Observable<any> {
     const post: Post = { title: title, content: content };
     return this.http.post("http://127.0.0.1:8081/api/posts", post);
-    //this.postsUpdated.next([...this.posts]);
   }
 
 }
