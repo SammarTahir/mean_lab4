@@ -16,9 +16,9 @@ export class PostDetailsComponent implements OnInit {
 
   ngOnInit() {
     //this.posts = this.ps.getPosts();
-    
+
     this.ps.getPostsData().subscribe(data => {
-      this.posts = data.posts;
+      this.posts = data.post;
     })
   }
 }
